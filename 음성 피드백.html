@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Mirror - 홈트레이닝 피드백</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Training Mirror</h1>
+            <p class="subtitle">AI 기반 실시간 자세 피드백</p>
+        </header>
+
+        <main>
+            <!-- 비디오 및 캔버스 영역 -->
+            <div class="video-container">
+                <video id="video-feed" autoplay playsinline></video>
+                <canvas id="pose-canvas"></canvas>
+            </div>
+
+            <!-- 운동 선택 -->
+            <div class="control-panel">
+                <div class="exercise-selector">
+                    <label for="exercise-select">운동 선택:</label>
+                    <select id="exercise-select">
+                        <option value="squat">스쿼트 (Squat)</option>
+                        <option value="pushup">푸시업 (Push-up)</option>
+                    </select>
+                </div>
+
+                <button id="start-btn" class="btn-primary">시작하기</button>
+                <button id="stop-btn" class="btn-secondary" disabled>정지</button>
+                   <label class="voice-toggle">
+                       <input type="checkbox" id="voice-toggle" aria-label="음성 피드백 사용"> 음성 피드백
+                   </label>
+            </div>
+
+            <!-- 피드백 영역 -->
+            <div class="feedback-container">
+                <div class="stats-panel">
+                    <div class="stat-item">
+                        <span class="stat-label">횟수</span>
+                        <span id="rep-count" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">상태</span>
+                        <span id="exercise-state" class="stat-value">-</span>
+                    </div>
+                </div>
+                
+                <div class="feedback-box">
+                    <h3>실시간 피드백</h3>
+                    <div id="feedback-message" class="feedback-text">
+                        카메라를 시작하고 운동을 선택하세요
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>MediaPipe Pose를 사용한 자세 분석</p>
+        </footer>
+    </div>
+
+    <!-- MediaPipe 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+
+    <!-- 메인 스크립트 -->
+    <script src="main.js"></script>
+</body>
+</html>
